@@ -1,0 +1,95 @@
+<!--
+File Name:edit.ejs
+Author: TeamPhoenix
+Group5
+Date: 2021-11-10
+-->
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+
+<!-- Content for the Add page -->
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <h1><%= title %></h1>
+
+            <form class="form" method="POST">
+                <div class="form-group">
+                    <label for="nameTextField">Survey Name</label>
+                    <input type="text" class="form-control"
+                    id="nameTextField"
+                    placeholder="Enter the Survey name"
+                    name="name" 
+                    value="<%= surveys.surveysName %>"
+                    required>
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="questionOneTextField">Question 1</label>
+                    <input type="text" class="form-control"
+                    id="questionOneTextField"
+                    placeholder="Question 1"
+                    name="questionOne" 
+                    value="<%= surveys.questionOne %>"
+                    required>
+                </div>
+
+                <div class="form-group">
+                    <label for="questionTwoTextField">Question 2</label>
+                    <input type="text" class="form-control"
+                    id="questionTwoTextField"
+                    placeholder="Question 2"
+                    name="questionTwo" 
+                    value="<%= surveys.questionTwo %>"
+                    required>
+                </div>
+
+                <div class="form-group">
+                    <label for="questionThreeTextField">Question 3</label>
+                    <input type="text" class="form-control"
+                    id="questionThreeTextField"
+                    placeholder="Question 3"
+                    name="questionThree" 
+                    value="<%= surveys.questionThree %>"
+                    required>
+                </div>
+
+                <div class="form-group">
+                    <label for="questionFourTextField">Question 4</label>
+                    <input type="text" class="form-control"
+                    id="questionFourTextField"
+                    placeholder="Question 4"
+                    name="questionFour" 
+                    value="<%= surveys.questionFour %>"
+                    required>
+                </div>
+
+                <div class="form-group">
+                    <label for="questionFiveTextField">Question 5</label>
+                    <input type="text" class="form-control"
+                    id="questionFiveTextField"
+                    placeholder="Question 5"
+                    name="questionFive" 
+                    value="<%= surveys.questionFive %>"
+                    required>
+                </div>
+
+
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-edit"></i> Submit</button>
+                
+                    <a href="/surveys-list" class="btn btn-warning">
+                        <i class="fas fa-undo"></i> Cancel</a>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+<%- include ../partials/bottom_nav.ejs %>  
+
+<%- include ../partials/footer.ejs %>
