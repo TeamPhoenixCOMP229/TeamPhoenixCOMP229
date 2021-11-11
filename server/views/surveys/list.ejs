@@ -24,14 +24,9 @@ Date: 2021-11-10
                 <!-- Header Row-->
                 <tr class="d-flex">
                     
-                        <th class="text-center col-2">Survey Name</th>
-                        <th class="text-center col-2">Question 1</th>
-                        <th class="text-center col-2">Question 2</th>
-                        <th class="text-center col-2">Question 3</th>
-                        <th class="text-center col-2">Question 4</th>
-                        <th class="text-center col-2">Question 5</th>
-                        <th class="text-center col-1"></th>
-                        <th class="text-center col-1"></th>
+                        <th class="text-center col-4">Survey Name</th>
+                        <th class="text-center col-4"></th>
+                        <th class="text-center col-4"></th>
                    
                 </tr>
 
@@ -39,17 +34,12 @@ Date: 2021-11-10
 
                 <% for(let count = 0; count < SurveysList.length; count++) { %>
                     <tr class="d-flex">
-                        <td class="text-center col-2"><%= SurveysList[count].surveysName %></td>
-                        <td class="text-center col-2"><%= SurveysList[count].questionOne %></td>
-                        <td class="text-center col-2"><%= SurveysList[count].questionTwo %></td>
-                        <td class="text-center col-2"><%= SurveysList[count].questionThree %></td>
-                        <td class="text-center col-2"><%= SurveysList[count].questionFour %></td>
-                        <td class="text-center col-2"><%= SurveysList[count].questionFive %></td>
-                        <td class="text-center col-1">
+                        <td class="text-center col-4"><%= SurveysList[count].surveysName %></td>
+                        <td class="text-center col-4">
                             <a href="/surveys-list/edit/<%= SurveysList[count]._id %>" class="btn btn-primary btn-sm">
                             <i class="fas fa-pencil-alt"></i> Edit</a>
                         </td>
-                        <td class="text-center col-1">
+                        <td class="text-center col-4">
                             <a href="/surveys-list/delete/<%= SurveysList[count]._id %>" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash-alt"></i> Delete</a>
                         </td>
