@@ -1,3 +1,12 @@
+//Kokila Sangilimuthu (Project Manager)- 301151291  
+//Morris Zuniga (Lead Software Engineer)- 822704615  
+//Ece Irem Burgaz (Web Designer) - 301162609  
+//RahulKumar Jiskeshbhai Makwana (UI Programmer) - 301183901  
+//Guillermo Garcia Romero - (Database Programmer) 301130333  
+//Orlino Pacioles Jr (Generalist Programmer)- 301216444
+//Survey Site URI link to MongoDB Atlas
+
+
 // installed 3rd party packages
 let createError = require('http-errors');
 let express = require('express');
@@ -22,7 +31,7 @@ mongoose.connect(DB.URI, {useNewUrlParser: true, useUnifiedTopology: true});
 let mongoDB = mongoose.connection;
 mongoDB.on('error', console.error.bind(console, 'Connection Error:'))
 mongoDB.once('open', ()=>{
-  console.log('Connected to MongoDB successfully...');
+  console.log('Connected to MongoDB...');
 })
 
 let indexRouter = require('../routes/index');

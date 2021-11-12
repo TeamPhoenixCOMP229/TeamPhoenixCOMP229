@@ -1,20 +1,24 @@
-<!--
-File Name:edit.ejs
-Author: TeamPhoenix
-Group5
-Date: 2021-11-10
+<!--//Kokila Sangilimuthu (Project Manager)- 301151291  
+//Morris Zuniga (Lead Software Engineer)- 822704615  
+//Ece Irem Burgaz (Web Designer) - 301162609  
+//RahulKumar Jiskeshbhai Makwana (UI Programmer) - 301183901  
+//Guillermo Garcia Romero - (Database Programmer) 301130333  
+//Orlino Pacioles Jr (Generalist Programmer)- 301216444
+//Survey site edit survey
 -->
 <%- include ../partials/header.ejs %>
 
 <%- include ../partials/main_nav.ejs %>
 
 <!-- Content for the Add page -->
+<main class="flex-fill">
 <div class="container">
     <div class="row">
         <div class="offset-md-3 col-md-6">
-            <h1><%= title %></h1>
+            
+                <h1><%= title %></h1>
 
-            <form class="form" method="POST">
+                <form class="form" method="POST">
                 <div class="form-group">
                     <label for="nameTextField">Survey Name</label>
                     <input type="text" class="form-control"
@@ -24,7 +28,7 @@ Date: 2021-11-10
                     value="<%= surveys.surveysName %>"
                     required>
                 </div>
-
+                <br>
                 
                 <div class="form-group">
                     <label for="questionOneTextField">Question 1</label>
@@ -35,7 +39,25 @@ Date: 2021-11-10
                     value="<%= surveys.questionOne %>"
                     required>
                 </div>
-
+                
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control"
+                    id="q1optionOneTextField"
+                    placeholder="Option 1"
+                    name="q1optionOne" 
+                    value="<%= surveys.q1optionOne %>"
+                    required>
+                </div>
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control"
+                    id="q1optionTwoTextField"
+                    placeholder="Option 2"
+                    name="q1optionTwo" 
+                    value="<%= surveys.q1optionTwo %>"
+                    required>
+                </div><br>
                 <div class="form-group">
                     <label for="questionTwoTextField">Question 2</label>
                     <input type="text" class="form-control"
@@ -45,7 +67,24 @@ Date: 2021-11-10
                     value="<%= surveys.questionTwo %>"
                     required>
                 </div>
-
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control"
+                    id="q2optionOneTextField"
+                    placeholder="Option 1"
+                    name="q2optionOne" 
+                    value="<%= surveys.q2optionOne %>"
+                    required>
+                </div>
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control"
+                    id="q2optionTwoTextField"
+                    placeholder="Option 2"
+                    name="q2optionTwo" 
+                    value="<%= surveys.q2optionTwo %>"
+                    required>
+                </div><br>
                 <div class="form-group">
                     <label for="questionThreeTextField">Question 3</label>
                     <input type="text" class="form-control"
@@ -55,7 +94,24 @@ Date: 2021-11-10
                     value="<%= surveys.questionThree %>"
                     required>
                 </div>
-
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control"
+                    id="q3optionOneTextField"
+                    placeholder="Option 1"
+                    name="q3optionOne" 
+                    value="<%= surveys.q3optionOne %>"
+                    required>
+                </div>
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control"
+                    id="q3optionTwoTextField"
+                    placeholder="Option 2"
+                    name="q3optionTwo" 
+                    value="<%= surveys.q3optionTwo %>"
+                    required>
+                </div><br>
                 <div class="form-group">
                     <label for="questionFourTextField">Question 4</label>
                     <input type="text" class="form-control"
@@ -65,7 +121,24 @@ Date: 2021-11-10
                     value="<%= surveys.questionFour %>"
                     required>
                 </div>
-
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control"
+                    id="q4optionOneTextField"
+                    placeholder="Option 1"
+                    name="q4optionOne" 
+                    value="<%= surveys.q4optionOne %>"
+                    required>
+                </div>
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control"
+                    id="q4optionTwoTextField"
+                    placeholder="Option 2"
+                    name="q4optionTwo" 
+                    value="<%= surveys.q4optionTwo %>"
+                    required>
+                </div><br>
                 <div class="form-group">
                     <label for="questionFiveTextField">Question 5</label>
                     <input type="text" class="form-control"
@@ -75,20 +148,44 @@ Date: 2021-11-10
                     value="<%= surveys.questionFive %>"
                     required>
                 </div>
-
-                <br>
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control"
+                    id="q5optionOneTextField"
+                    placeholder="Option 1"
+                    name="q5optionOne" 
+                    value="<%= surveys.q5optionOne %>"
+                    required>
+                </div>
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control"
+                    id="q5optionTwoTextField"
+                    placeholder="Option 2"
+                    name="q5optionTwo" 
+                    value="<%= surveys.q5optionTwo %>"
+                    required>
+                </div>
+                
                 <button class="btn btn-primary" type="submit">
                     <i class="fas fa-edit"></i> Submit</button>
                 
                     <a href="/surveys-list" class="btn btn-warning">
                         <i class="fas fa-undo"></i> Cancel</a>
+                        <br>
 
-            </form>
+                </form>
+                <br>
+                <br>
+                <br>
+                <br>
+            
         </div>
 
     </div>
 </div>
 
+</main>
 
 <%- include ../partials/bottom_nav.ejs %>  
 
