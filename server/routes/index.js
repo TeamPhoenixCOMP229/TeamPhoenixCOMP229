@@ -21,7 +21,7 @@ router.get('/home', indexController.displayHomePage);
 /* GET survey page. */
 router.get('/surveys/list', indexController.displaySurveysPage);
 
-/* GET Route for displaying the Login pages */
+/* GET Route for displaying the Login page */
 router.get('/login', indexController.displayLoginPage);
 
 /* POST Route for processing the Login page */
