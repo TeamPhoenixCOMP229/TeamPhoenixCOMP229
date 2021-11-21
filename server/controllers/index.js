@@ -87,7 +87,6 @@ module.exports.processRegisterPage = (req, res, next) => {
     // instantiate a user object
     let newUser = new User({
         username: req.body.username,
-        //password: req.body.password
         email: req.body.email,
         displayName: req.body.displayName
     });
@@ -118,10 +117,6 @@ module.exports.processRegisterPage = (req, res, next) => {
             // if no error exists, then registration is successful
 
             // redirect the user and authenticate them
-
-            /* TODO - Getting Ready to convert to API
-            res.json({success: true, msg: 'User Registered Successfully!'});
-            */
 
             return passport.authenticate('local')(req, res, () => {
                 res.redirect('/surveys-list')
