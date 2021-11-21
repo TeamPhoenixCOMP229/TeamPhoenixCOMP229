@@ -15,7 +15,15 @@ let passport = require('passport');
 
 let surveysController = require('../controllers/surveys');
 
+function requireAuth(req, res, next)
+{
+    if(!req.isAuthenticated()) 
+    {
+        return res.redirect('/login')
+    }
 
+    next()
+}
 
 // connect to our Survey Model
 let Surveys = require('../models/surveys');
@@ -25,18 +33,18 @@ let Surveys = require('../models/surveys');
 router.get('/', surveysController.displaySurveysList);
 
 /* GET Route for displaying Add page - CREATE Operation */
-router.get('/add',  surveysController.displayAddPage );
+router.get('/add', requireAuth, surveysController.displayAddPage );
 
 /* POST Route for processing Add page - CREATE Operation */
-router.post('/add', surveysController.processAddPage );
+router.post('/add', requireAuth, surveysController.processAddPage );
 
 /* GET Route for displaying Edit page - UPDATE Operation */
-router.get('/edit/:id',  surveysController.displayEditPage);
+router.get('/edit/:id', requireAuth,  surveysController.displayEditPage);
 
 /* POST Route for processing Edit page - UPDATE Operation */
-router.post('/edit/:id',  surveysController.processEditPage);
+router.post('/edit/:id', requireAuth,  surveysController.processEditPage);
 
 /* GETto perform Deletion - DELETE Operation */
-router.get('/delete/:id',  surveysController.performDelete );
+router.get('/delete/:id', requireAuth,  surveysController.performDelete );
 
 module.exports = router;

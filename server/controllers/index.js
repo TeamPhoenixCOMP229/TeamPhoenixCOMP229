@@ -9,17 +9,18 @@
 
 let express = require('express');
 let router = express.Router();
+let passport = require('passport');
 
 // create the User Model instance
 let userModel = require('../models/user');
 let User = userModel.User; // alias
 
 module.exports.displayHomePage = (req, res, next) => {
-    res.render('index', {title: 'Home'});
+    res.render('index', {title: 'Home', displayName: req.user ? req.user.displayName : ''});
 }
 
 module.exports.displaySurveysPage = (req, res, next) => {
-    res.render('index', { title: 'Surveys'});
+    res.render('index', { title: 'Surveys', displayName: req.user ? req.user.displayName : ''});
 }
 
 module.exports.displayLoginPage = (req, res, next) => {
@@ -60,27 +61,6 @@ module.exports.processLoginPage = (req, res, next) => {
                 return next(err);
             }
 
-            const payload = 
-            {
-                id: user._id,
-                displayName: user.displayName,
-                username: user.username,
-                email: user.email
-            }
-
-            const authToken = jwt.sign(payload, DB.Secret, {
-                expiresIn: 604800 // 1 week
-            });
-
-            /* TODO - Getting Ready to convert to API
-            res.json({success: true, msg: 'User Logged in Successfully!', user: {
-                id: user._id,
-                displayName: user.displayName,
-                username: user.username,
-                email: user.email
-            }, token: authToken});
-            */
-
             return res.redirect('/surveys-list');
         });
     })(req, res, next);
@@ -116,6 +96,7 @@ module.exports.processRegisterPage = (req, res, next) => {
         if(err)
         {
             console.log("Error: Inserting New User");
+            console.log(err)
             if(err.name == "UserExistsError")
             {
                 req.flash(
@@ -124,6 +105,7 @@ module.exports.processRegisterPage = (req, res, next) => {
                 );
                 console.log('Error: User Already Exists!')
             }
+
             return res.render('auth/register',
             {
                 title: 'Register',

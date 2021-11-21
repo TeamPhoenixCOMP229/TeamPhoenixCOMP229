@@ -14,7 +14,7 @@ let mongoose = require('mongoose');
 // create a reference to the model
 let Surveys = require('../models/surveys');
 
-module.exports.displaySurveysList = (_req, res, _next) => {
+module.exports.displaySurveysList = (req, res, _next) => {
     Surveys.find((err, surveysList)=> {
         if(err)
         {
@@ -22,14 +22,18 @@ module.exports.displaySurveysList = (_req, res, _next) => {
         }
         else
         {
-            
-            res.render('surveys/list', {title: 'Surveys', SurveysList: surveysList})
+            res.render('surveys/list',
+             {title: 'Surveys',
+              SurveysList: surveysList,
+              displayName: req.user ? req.user.displayName : ''})
         }
     });
 }
 
 module.exports.displayAddPage =  (req, res, next) => {
-    res.render('surveys/add', {title: 'Add Survey'})
+    res.render('surveys/add',
+     {title: 'Add Survey',
+      displayName: req.user ? req.user.displayName : ''})
 }
 
 module.exports.processAddPage = (req, res, next) => {
@@ -77,7 +81,10 @@ module.exports.displayEditPage =  (req, res, next) => {
         else
         {
             //show the edit view
-            res.render('surveys/edit', {title: 'Edit Survey', surveys: surveyToEdit});
+            res.render('surveys/edit',
+             {title: 'Edit Survey',
+              surveys: surveyToEdit,
+               displayName: req.user ? req.user.displayName : ''});
         }
     });
 }
