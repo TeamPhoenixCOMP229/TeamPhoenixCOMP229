@@ -32,22 +32,6 @@
                     placeholder="Enter the Question 1"
                     name="questionOne" required>   
                 </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q1optionOneTextField"
-                    placeholder="Option 1"
-                    name="q1optionOne" 
-                    required>
-                </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q1optionTwoTextField"
-                    placeholder="Option 2"
-                    name="q1optionTwo" 
-                    required>
-                </div>
                <br>
                 <div class="form-group">
                     <label for="questionTwoTextField">Question 2</label>
@@ -55,22 +39,6 @@
                     id="questionTwoTextField"
                     placeholder="Enter the Question 2"
                     name="questionTwo" required>
-                </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q2optionOneTextField"
-                    placeholder="Option 1"
-                    name="q2optionOne"
-                    required>
-                </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q2optionTwoTextField"
-                    placeholder="Option 2"
-                    name="q2optionTwo" 
-                    required>
                 </div>
                 <br>
                <div class="form-group">
@@ -81,22 +49,6 @@
                     name="questionThree" required>
                     
                 </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q3optionOneTextField"
-                    placeholder="Option 1"
-                    name="q3optionOne" 
-                    required>
-                </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q3optionTwoTextField"
-                    placeholder="Option 2"
-                    name="q3optionTwo"
-                    required>
-                </div>
                 <br>
                <div class="form-group">
                     <label for="questionFourTextField">Question 4</label>
@@ -104,21 +56,6 @@
                     id="questionOneTextField"
                     placeholder="Enter the Question 4"
                     name="questionFour" required> 
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control"
-                    id="q4optionOneTextField"
-                    placeholder="Option 1"
-                    name="q4optionOne"
-                    required>
-                </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q4optionTwoTextField"
-                    placeholder="Option 2"
-                    name="q4optionTwo" 
-                    required>
                 </div>
                <br>
                <div class="form-group">
@@ -128,19 +65,20 @@
                     placeholder="Enter the Question 5"
                     name="questionFive" required>
                 </div>
+                <br>
                 <div class="form-group">
-                    <input type="text" class="form-control"
-                    id="q5optionOneTextField"
-                    placeholder="Option 1"
-                    name="q5optionOne" 
+                    <label>Activation Date</label>
+                    <input type="date" class="form-control"
+                    id="activationDate"
+                    name="activationDate" 
                     required>
                 </div>
+                <br>
                 <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q5optionTwoTextField"
-                    placeholder="Option 2"
-                    name="q5optionTwo" 
+                    <label>Expiration Date</label>
+                    <input type="date" class="form-control"
+                    id="expirationDate"
+                    name="expirationDate" 
                     required>
                 </div>
                 <br>
@@ -161,6 +99,15 @@
     </div>
 </div>
 
+<script>
+    document.getElementById("activationDate").onchange = function () {
+        let secondDate = document.getElementById("expirationDate")
+        secondDate.min = this.value
+        if (this.value > secondDate.value) {
+            secondDate.value = this.value
+        }
+    }
+</script>
 
 
 <%- include ../partials/bottom_nav.ejs %>  

@@ -11,22 +11,34 @@ let mongoose = require('mongoose');
 
 //create a model class
 let surveysModel = mongoose.Schema({
-    surveysName: String, 
-    questionOne: String,
-    q1optionOne: String,
-    q1optionTwo: String,
-    questionTwo: String,
-    q2optionOne: String,
-    q2optionTwo: String,
-    questionThree: String,
-    q3optionOne: String,
-    q3optionTwo: String,
-    questionFour: String,
-    q4optionOne: String,
-    q4optionTwo: String,
-    questionFive: String,
-    q5optionOne: String,
-    q5optionTwo: String,
+    surveyName: {
+        type: String,
+        default: '',
+        trim: true,
+        required: 'surveysName is required'
+    },
+    questions: [{
+        title: String,
+        options: [{
+            title: {
+                type: String,
+                default: ''
+            },
+            count: {
+                type: Number,
+                default: 0
+            }
+        }]
+    }
+    ],
+    activationDate: {
+        type: Date,
+        default: Date.now()
+    },
+    expirationDate: {
+        type: Date,
+        default: Date.now()
+    }
 },
 {
     collection: "surveys"
