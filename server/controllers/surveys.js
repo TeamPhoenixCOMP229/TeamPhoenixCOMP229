@@ -44,7 +44,13 @@ module.exports.processAddPage = (req, res, next) => {
         req.body.questionTwo,
         req.body.questionThree,
         req.body.questionFour,
-        req.body.questionFive
+        req.body.questionFive,
+        req.body.questionSix,
+        req.body.questionSeven,
+        req.body.questionEight,
+        req.body.questionNine,
+        req.body.questionTen
+
     ]
 
     let questions = []
