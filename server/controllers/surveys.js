@@ -95,7 +95,7 @@ module.exports.displayEditPage =  (req, res, next) => {
             //show the edit view
             res.render('surveys/edit',
              {title: 'Edit Survey',
-              surveys: surveyToEdit,
+              survey: surveyToEdit,
                displayName: req.user ? req.user.displayName : ''});
         }
     });
@@ -103,25 +103,27 @@ module.exports.displayEditPage =  (req, res, next) => {
 
 module.exports.processEditPage = (req, res, next) => {
     let id = req.params.id;
+    let questionsTitles = req.body.questionsTitles
+    let questions = []
+
+    for (let i = 0; i < questionsTitles.length; i++) {
+        questions.push({
+            "title" : questionsTitles[i],
+            "options" : BinaryQuestionOptions
+        })
+    }
+
+    let activationDate = new Date(req.body.activationDate)
+    let expirationDate = new Date(req.body.expirationDate)
+    // Increase the date by one, so the survey expires at the end of the day
+    expirationDate.setDate(expirationDate.getDate() + 1)
 
     let updatedSurvey = Surveys({
         "_id": id,
-        "surveysName" : req.body.surveysName,
-        "questionOne"  : req.body.questionOne,
-        "q1optionOne" : req.body.q1optionOne,
-        "q1optionTwo" : req.body.q1optionTwo,
-        "questionTwo"  : req.body.questionTwo,
-        "q2optionOne" : req.body.q2optionOne,
-        "q2optionTwo" : req.body.q2optionTwo,
-        "questionThree"  : req.body.questionThree,
-        "q3optionOne" : req.body.q3optionOne,
-        "q3optionTwo" : req.body.q3optionTwo,
-        "questionFour"  : req.body.questionFour,
-        "q4optionOne" : req.body.q4optionOne,
-        "q4optionTwo" : req.body.q4optionTwo,
-        "questionFive"  : req.body.questionFive,
-        "q5optionOne" : req.body.q5optionOne,
-        "q5optionTwo" : req.body.q5optionTwo
+        "surveyName" : req.body.surveyName,
+        "questions" : questions,
+        "activationDate" : activationDate,
+        "expirationDate"  : expirationDate
     });
     Surveys.updateOne({_id: id}, updatedSurvey, (err) => {
         if(err)

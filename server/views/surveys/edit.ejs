@@ -24,149 +24,42 @@
                     <input type="text" class="form-control"
                     id="nameTextField"
                     placeholder="Enter the Survey name"
-                    name="surveysName" 
-                    value="<%= surveys.surveysName %>"
+                    name="surveyName" 
+                    value="<%= survey.surveyName %>"
                     required>
                 </div>
                 <br>
-                
+
+                <% for(let count = 0; count < survey.questions.length; count++) { %>
+
+                    <div class="form-group">
+                        <label> Question <%= count + 1%> </label>
+                        <input type="text" class="form-control"
+                        placeholder= "Question <%= count + 1%>"
+                        name="questionsTitles" 
+                        value="<%= survey.questions[count].title %>"
+                        required>
+                    </div>
+                    <br>
+
+                <% } %>
+
                 <div class="form-group">
-                    <label for="questionOneTextField">Question 1</label>
-                    <input type="text" class="form-control"
-                    id="questionOneTextField"
-                    placeholder="Question 1"
-                    name="questionOne" 
-                    value="<%= surveys.questionOne %>"
+                    <label>Activation Date</label>
+                    <input type="date" class="form-control"
+                    id="activationDate"
+                    name="activationDate"
                     required>
                 </div>
-                
+                <br>
                 <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q1optionOneTextField"
-                    placeholder="Option 1"
-                    name="q1optionOne" 
-                    value="<%= surveys.q1optionOne %>"
+                    <label>Expiration Date</label>
+                    <input type="date" class="form-control"
+                    id="expirationDate"
+                    name="expirationDate"
                     required>
                 </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q1optionTwoTextField"
-                    placeholder="Option 2"
-                    name="q1optionTwo" 
-                    value="<%= surveys.q1optionTwo %>"
-                    required>
-                </div><br>
-                <div class="form-group">
-                    <label for="questionTwoTextField">Question 2</label>
-                    <input type="text" class="form-control"
-                    id="questionTwoTextField"
-                    placeholder="Question 2"
-                    name="questionTwo" 
-                    value="<%= surveys.questionTwo %>"
-                    required>
-                </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q2optionOneTextField"
-                    placeholder="Option 1"
-                    name="q2optionOne" 
-                    value="<%= surveys.q2optionOne %>"
-                    required>
-                </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q2optionTwoTextField"
-                    placeholder="Option 2"
-                    name="q2optionTwo" 
-                    value="<%= surveys.q2optionTwo %>"
-                    required>
-                </div><br>
-                <div class="form-group">
-                    <label for="questionThreeTextField">Question 3</label>
-                    <input type="text" class="form-control"
-                    id="questionThreeTextField"
-                    placeholder="Question 3"
-                    name="questionThree" 
-                    value="<%= surveys.questionThree %>"
-                    required>
-                </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q3optionOneTextField"
-                    placeholder="Option 1"
-                    name="q3optionOne" 
-                    value="<%= surveys.q3optionOne %>"
-                    required>
-                </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q3optionTwoTextField"
-                    placeholder="Option 2"
-                    name="q3optionTwo" 
-                    value="<%= surveys.q3optionTwo %>"
-                    required>
-                </div><br>
-                <div class="form-group">
-                    <label for="questionFourTextField">Question 4</label>
-                    <input type="text" class="form-control"
-                    id="questionFourTextField"
-                    placeholder="Question 4"
-                    name="questionFour" 
-                    value="<%= surveys.questionFour %>"
-                    required>
-                </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q4optionOneTextField"
-                    placeholder="Option 1"
-                    name="q4optionOne" 
-                    value="<%= surveys.q4optionOne %>"
-                    required>
-                </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q4optionTwoTextField"
-                    placeholder="Option 2"
-                    name="q4optionTwo" 
-                    value="<%= surveys.q4optionTwo %>"
-                    required>
-                </div><br>
-                <div class="form-group">
-                    <label for="questionFiveTextField">Question 5</label>
-                    <input type="text" class="form-control"
-                    id="questionFiveTextField"
-                    placeholder="Question 5"
-                    name="questionFive" 
-                    value="<%= surveys.questionFive %>"
-                    required>
-                </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q5optionOneTextField"
-                    placeholder="Option 1"
-                    name="q5optionOne" 
-                    value="<%= surveys.q5optionOne %>"
-                    required>
-                </div>
-                <div class="form-group">
-                    
-                    <input type="text" class="form-control"
-                    id="q5optionTwoTextField"
-                    placeholder="Option 2"
-                    name="q5optionTwo" 
-                    value="<%= surveys.q5optionTwo %>"
-                    required>
-                </div>
-                
+                <br>
                 <button class="btn btn-primary" type="submit">
                     <i class="fas fa-edit"></i> Submit</button>
                 
@@ -186,6 +79,26 @@
 </div>
 
 </main>
+
+<script>
+    document.getElementById("activationDate").onchange = function () {
+        let secondDate = document.getElementById("expirationDate")
+        secondDate.min = this.value
+        if (this.value > secondDate.value) {
+            secondDate.value = this.value
+        }
+    }
+
+    let activationDateString = "<%= survey.activationDate  %>";
+    let activationDate = new Date(activationDateString)
+    document.getElementById('activationDate').valueAsDate = activationDate
+
+    let expirationDateString = "<%= survey.expirationDate  %>";
+    let expirationDate = new Date(expirationDateString)
+    // Substracting one day, since when we save the expiration date we increase the date by one
+    expirationDate.setDate(expirationDate.getDate() - 1)
+    document.getElementById('expirationDate').valueAsDate = expirationDate
+</script>
 
 <%- include ../partials/bottom_nav.ejs %>  
 
