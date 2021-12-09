@@ -220,6 +220,7 @@ module.exports.processSurveyDisplayPage = (req, res, next) => {
                 }
                 else
                 {
+                    
                     //refresh the survey list
                     res.redirect('/home');
                 }
