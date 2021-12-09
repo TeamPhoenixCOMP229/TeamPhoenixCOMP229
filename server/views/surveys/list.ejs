@@ -42,16 +42,16 @@
                         <td class="text-center col-2"><%= SurveysList[count].surveyName %></td>
                         <td class="text-center col-2"><%= SurveysList[count].activationDate %></td>
                         <td class="text-center col-2"><%= SurveysList[count].expirationDate %></td>
-                        <td class="text-center col-3">
+                        <td class="text-center col-2">
                             <a href="/surveys-list/edit/<%= SurveysList[count]._id %>" class="btn btn-primary btn-sm">
-                            <i class="fas fa-pencil-alt"></i> Edit</a>
+                            <i class="fas fa-pencil-alt"></i> Edit</a></td>
+                            <td class="text-center col-2">
                             <a href="/surveys-list/delete/<%= SurveysList[count]._id %>" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i> Delete</a>
+                            <i class="fas fa-trash-alt"></i> Delete</a></td>
                         </td>
-                        <td class="text-center col-3">
-                        
-                            <a href="/surveys-list/detail/<%= SurveysList[count]._id %>" class="btn btn-primary btn-sm">
-                            <i class="far fa-eye"></i> Take Survey</a>
+                        <td class="text-center col-2">
+                            <a href="/surveys-list/result/<%= SurveysList[count]._id %>" class="btn btn-primary btn-sm">
+                            <i class="far fa-file-alt"></i></i> Statistics</a>
                             </td>
                     </tr>
                 <% } %>

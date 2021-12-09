@@ -182,7 +182,7 @@ module.exports.surveyDisplayPage =  (req, res, next) => {
         {
             //show the edit view
             res.render('surveydisplay',
-             {title: 'Survey Questions',
+             {title: 'Survey',
               survey: surveyToDisplay,
                displayName: req.user ? req.user.displayName : ''});
         }
