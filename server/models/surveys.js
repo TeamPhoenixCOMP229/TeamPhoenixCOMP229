@@ -17,6 +17,13 @@ let surveysModel = mongoose.Schema({
         trim: true,
         required: 'surveysName is required'
     },
+    username: 
+        {
+            type: String,
+            default: '',
+            trim: true,
+            required: 'username is required'
+        },
     questions: [{
         title: String,
         options: [{

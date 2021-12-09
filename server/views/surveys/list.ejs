@@ -21,6 +21,7 @@
             
             <br>
             <% if(typeof displayName == 'string' && displayName) { %>
+              
             <table class="table table-bordered table-striped table-hover">
                 <!-- Header Row-->
                 <tr class="d-flex">
@@ -38,6 +39,7 @@
                 <!-- Repeatable Template Row -->
 
                 <% for(let count = 0; count < SurveysList.length; count++) { %>
+                    <% if(SurveysList[count].username==displayName) {%> 
                     <tr class="d-flex">
                         <td class="text-center col-2"><%= SurveysList[count].surveyName %></td>
                         <td class="text-center col-2"><%= SurveysList[count].activationDate %></td>
@@ -54,6 +56,7 @@
                             <i class="far fa-file-alt"></i></i> Statistics</a>
                             </td>
                     </tr>
+                <% } %>
                 <% } %>
             </table>
             <% }else { %>
