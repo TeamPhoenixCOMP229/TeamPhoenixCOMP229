@@ -17,10 +17,24 @@ let DB = require('../config/db');
 
 // create the User Model instance
 let userModel = require('../models/user');
+let Surveys = require('../models/surveys');
 let User = userModel.User; // alias
 
 module.exports.displayHomePage = (req, res, next) => {
-    res.render('index', {title: 'Home', displayName: req.user ? req.user.displayName : ''});
+    //res.render('index', {title: 'Home', displayName: req.user ? req.user.displayName : ''});
+    Surveys.find((err, surveysList)=> {
+        if(err)
+        {
+            return console.error(err);
+        }
+        else
+        {
+            res.render('index',
+             {title: 'Home',
+              SurveysList: surveysList,
+              displayName: req.user ? req.user.displayName : ''})
+        }
+    });
 }
 
 module.exports.displaySurveysPage = (req, res, next) => {
@@ -155,3 +169,51 @@ module.exports.performLogout = (req, res, next) => {
     req.logout();
     res.redirect('/');
 }
+module.exports.surveyDisplayPage =  (req, res, next) => {
+    let id = req.params.id;
+
+    Surveys.findById(id, (err, surveyToDisplay) => {
+        if(err)
+        {
+             console.log(err);
+             res.end(err);
+        }
+        else
+        {
+            //show the edit view
+            res.render('surveydisplay',
+             {title: 'Survey Questions',
+              survey: surveyToDisplay,
+               displayName: req.user ? req.user.displayName : ''});
+        }
+    });
+}
+module.exports.processSurveyDisplayPage = (req, res, next) => {
+    let id = req.params.id;
+    let questionsTitles = req.body.questionsTitles
+    let questions = []
+
+    for (let i = 0; i < questionsTitles.length; i++) {
+        questions.push({
+            "options" : BinaryQuestionOptions
+        })
+    }
+
+    let updatedSurvey = Surveys({
+        "_id": id,
+        "questions" : questions,
+    });
+    Surveys.updateOne({_id: id}, updatedSurvey, (err) => {
+        if(err)
+        {
+             console.log(err);
+             res.end(err);
+        }
+        else
+        {
+            //refresh the survey list
+            res.redirect('/home');
+        }
+    });
+}
+
