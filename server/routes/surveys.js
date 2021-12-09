@@ -49,5 +49,7 @@ router.post('/edit/:id', requireAuth,  surveysController.processEditPage);
 /* GETto perform Deletion - DELETE Operation */
 router.get('/delete/:id', requireAuth,  surveysController.performDelete );
 
+/* GET Route for displaying Statistics page*/
+router.get('/statistics/:id', requireAuth, surveysController.displayStatisticsPage );
 
 module.exports = router;

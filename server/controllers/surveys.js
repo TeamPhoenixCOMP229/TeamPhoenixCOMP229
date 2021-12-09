@@ -163,6 +163,27 @@ module.exports.performDelete = (req, res, next) => {
     });
 }
 
+module.exports.displayStatisticsPage =  (req, res, next) => {
+    let id = req.params.id;
+
+    Surveys.findById(id, (err, surveyToShow) => {
+        if(err)
+        {
+             console.log(err);
+             res.end(err);
+        }
+        else
+        {
+
+            //show the statistics view
+            res.render('surveys/statistics',
+             {title: 'Statistics',
+             survey: surveyToShow,
+               displayName: req.user ? req.user.displayName : ''});
+        }
+    });
+}
+
 
 const BinaryQuestionTrueTitle = "Agree"
 const BinaryQuestionFalseTitle = "Disagree"
