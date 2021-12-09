@@ -6,47 +6,54 @@ Date: 2021-11-10
 -->
 <%- include partials/header.ejs %>
 
-<%- include partials/main_nav.ejs %>
+  <%- include partials/main_nav.ejs %>
 
-<main >
-  <div class="p-5 text-center bg-light">
-    <h1 class="display-4">Welcome to Phoenix Survey Site</h1>
-    <blockquote class="blockquote">
-    <p><em>Active Surveys</em></p>
-    </blockquote>
+    <main>
+      <div class="p-5 text-center bg-light">
+        <h1 class="display-4">Welcome to Phoenix Survey Site</h1>
+        <blockquote class="blockquote">
+          <p><em>Active Surveys</em></p>
+        </blockquote>
 
-    <div class="row">
-      <div class="offset-md-4 col-md-4">
-          <table class="table table-bordered table-striped table-hover" >
-            <!-- Header Row-->
-      <tr>
-        <th class="text-center col-2">Survey Name</th>
-                        
-        <th class="text-center col-2"></th>
-      </tr>
-        <!-- Repeatable Template Row -->
+        <div class="row">
+          <div class="offset-md-4 col-md-4">
+            <table class="table table-bordered table-striped table-hover">
+              <!-- Header Row-->
+              <tr>
+                <th class="text-center col-2">Survey Name</th>
 
-      <% for(let count = 0; count < SurveysList.length; count++) { %>
-        <% if(SurveysList[count].activationDate-SurveysList[count].expirationDate!=0) {%> 
-          <tr>
-            <td class="text-center col-2"><%= SurveysList[count].surveyName %></td>
-            <td class="text-center col-2">    
-              <a href="/display/<%= SurveysList[count]._id %>" class="btn btn-primary btn-sm">
-              <i class="fas fa-poll-h"></i> Goto Survey</a>
-            </td>
-          </tr>
-          <% } %>
-               <% } %>
-         </table>
+                <th class="text-center col-2"></th>
+              </tr>
+              <!-- Repeatable Template Row -->
+              <% let currentDate=new Date() %>
+                <% let activationDate=new Date() %>
+                  <% let expirationDate=new Date() %>
+                    <% for(let count=0; count < SurveysList.length; count++) { %>
+                      <% activationDate=new Date(SurveysList[count].activationDate) %>
+                        <% expirationDate=new Date(SurveysList[count].expirationDate) %>
+                          <% if(currentDate> activationDate && currentDate <= expirationDate) {%>
+                              <tr>
+                                <td class="text-center col-2">
+                                  <%= SurveysList[count].surveyName %>
+                                </td>
+                                <td class="text-center col-2">
+                                  <a href="/display/<%= SurveysList[count]._id %>" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-poll-h"></i> Goto Survey</a>
+                                </td>
+                              </tr>
+                              <% } %>
+                                <% } %>
+            </table>
+          </div>
         </div>
-      </div>
-  
-  </main>
 
-<%- include partials/bottom_nav.ejs %>
+    </main>
+    <script type="text/javascript">
+      function getCurrentDate() {
+        let date = new Date();
+        return date;
+      }
+    </script>
+    <%- include partials/bottom_nav.ejs %>
 
-<%- include partials/footer.ejs %>
-
-
-
-
+      <%- include partials/footer.ejs %>
