@@ -19,21 +19,20 @@
             
                 <h1><%= title %></h1>
 
-                <form class="form" method="POST">
+                <form class="form" method="POST" onsubmit="mapRadioButtons()">
                 <div class="form-group">
                     <label for="nameTextField">Survey Name <%=survey.surveyName %></label>
-                    
                 </div>
                 <br>
 
                 <% for(let count = 0; count < survey.questions.length; count++) { %>
-
                     <div class="form-group">
-                        <label> Question <%= count + 1%> </label><br>
-                        <input type="radio" id="">agree
-                        <input type="radio" id="">disagree
-            
-
+                        <label> <%= survey.questions[count].title%> </label><br>
+                    <% for(let optionsIndex = 0; optionsIndex < survey.questions[count].options.length; optionsIndex++) { %>
+                        <!-- Setting first radio button in each group as checked -->
+                        <input type="radio" value="<%= survey.questions[count].options[optionsIndex].title%>" name="answer<%= count%>" <%= optionsIndex == 0 ? 'checked': ''%>>
+                         <%= survey.questions[count].options[optionsIndex].title%>
+                    <% } %>
                     </div>
                     <br>
 
@@ -60,6 +59,19 @@
 
 </main>
 
+<script>
+    document.getElementById("activationDate").onchange = function () {
+        let secondDate = document.getElementById("expirationDate")
+        secondDate.min = this.value
+        if (this.value > secondDate.value) {
+            secondDate.value = this.value
+        }
+    }
+
+    function mapRadioButtons() {
+        return false
+    }
+</script>
 
 <%- include partials/bottom_nav.ejs %>
 

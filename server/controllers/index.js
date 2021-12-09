@@ -190,20 +190,9 @@ module.exports.surveyDisplayPage =  (req, res, next) => {
 }
 module.exports.processSurveyDisplayPage = (req, res, next) => {
     let id = req.params.id;
-    let questionsTitles = req.body.questionsTitles
-    let questions = []
 
-    for (let i = 0; i < questionsTitles.length; i++) {
-        questions.push({
-            "options" : BinaryQuestionOptions
-        })
-    }
-
-    let updatedSurvey = Surveys({
-        "_id": id,
-        "questions" : questions,
-    });
-    Surveys.updateOne({_id: id}, updatedSurvey, (err) => {
+    // Get answer survey from database
+    Surveys.findById(id, (err, surveyToUpdate) => {
         if(err)
         {
              console.log(err);
@@ -211,8 +200,30 @@ module.exports.processSurveyDisplayPage = (req, res, next) => {
         }
         else
         {
-            //refresh the survey list
-            res.redirect('/home');
+            let keys = Object.keys(req.body)
+            for (let i = 0; i < surveyToUpdate.questions.length; i++) {
+                let selectedOptionTitle = req.body[keys[i]]
+                for (let j = 0; j < surveyToUpdate.questions[i].options.length; j++) {
+                    if (selectedOptionTitle == surveyToUpdate.questions[i].options[j].title) {
+                        // Increase count according to answers
+                        surveyToUpdate.questions[i].options[j].count++ 
+                    }
+                }
+            }
+
+            // Update survey
+            Surveys.updateOne({_id: id}, surveyToUpdate, (err) => {
+                if(err)
+                {
+                     console.log(err);
+                     res.end(err);
+                }
+                else
+                {
+                    //refresh the survey list
+                    res.redirect('/home');
+                }
+            });
         }
     });
 }
